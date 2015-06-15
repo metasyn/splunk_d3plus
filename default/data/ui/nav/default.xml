@@ -1,0 +1,5 @@
+<nav search_view="search" color="#d62728">
+  <view name="tutorial" default="true"/>
+  <view name="contents"/>
+  <view name="search"/>
+</nav>

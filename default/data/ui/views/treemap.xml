@@ -1,0 +1,25 @@
+<form script="autodiscover.js">
+  <label>Treemap</label>
+  <row>
+    <panel>
+      <html>
+        <h2>First 100 Flights (from sample_flights.csv and europe.csv)</h2>
+        <p id="info"></p>
+        <div id="hiveplot_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
+          "search": "index=_internal
+| stats count by host sourcetype source",
+          "preview": true
+        }'>
+        </div>
+        <div id="hiveplot" class="splunk-view" data-require="app/custom_vizs/components/treemap/treemap" data-options='{
+          "managerid": "hiveplot_search",
+          "root_label": "Index",
+		  "width": 800,
+		  "height": 500,
+          "size_field": "count"
+        }'>
+        </div>
+      </html>
+    </panel>
+  </row>
+</form>

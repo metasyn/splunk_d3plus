@@ -1,0 +1,33 @@
+<form script="autodiscover.js">
+    <label>Timeline Treemap</label>
+    <row>
+      <panel>
+        <html>
+          <h2>Description</h2>
+          <p id="info"></p>
+          <div id="timeline_treemap_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
+ 	         "search": "index=_audit earliest=-1mon@mon
+| bucket _time span=1d
+| stats count by action info _time",
+    	     "preview": true
+          }'>
+          </div>
+          <div id="grouped_treemap" 
+          class="splunk-view" 
+          data-require="app/d3plus/components/treemap/treemap" 
+          data-options='{
+		"managerid": "timeline_treemap_search",
+		"height": "800",
+		"width": "1000", 
+		"levels": "info",
+		"size_field": "count",
+		"time_field": "_time"
+          }'>
+          	<div>
+              <h1> Padding </h1>
+            </div>
+          </div>
+        </html>
+      </panel>
+    </row>
+  </form>

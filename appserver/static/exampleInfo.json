@@ -1,0 +1,35 @@
+[
+    {
+        "id": "grouped_treemap",
+        "title": "Grouped Treemap",
+        "short-description": "A zoomable treemap of grouped items.",
+        "category": "Treemaps",
+        "versions": ["6.2"],
+        "sourceFiles": [
+            "/static/app/d3plus/components/treemap/treemap.js"
+        ],
+        "related_links": []
+    },
+    {
+        "id": "timeline_treemap",
+        "title": "Timeline Treemap",
+        "short-description": "A flat treemap with a timeline and play button.",
+        "category": "Treemaps",
+        "versions": ["6.2"],
+        "sourceFiles": [
+            "/static/app/d3plus/components/treemap/treemap.js"
+        ],
+        "related_links": []
+    },
+    {
+        "id": "scatterplot",
+        "title": "Scatterplot",
+        "short-description": "A somewhat more advanced scatterplot using d3plus.",
+        "category": "Scatterplots",
+        "versions": ["6.2"],
+        "sourceFiles": [
+            "/static/app/d3plus/components/scatterplot/scatterplot.js"
+        ],
+        "related_links": []
+    }
+]
