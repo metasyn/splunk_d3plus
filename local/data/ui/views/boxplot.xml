@@ -1,0 +1,35 @@
+<form script="autodiscover.js">
+    <label>Boxplot</label>
+    <row>
+      <panel>
+        <html>
+          <h2>Boxplot and Scatterplot</h2>
+          <p id="info"></p>
+          <div id="scatterplot_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
+ 	         "search": "
+|inputlookup users.csv
+| eval age = tonumber(strftime(now(), \"%Y\")) - tonumber(mvindex(split(bday,\"-\"),0))
+| table gender country karma sentiment age 
+| head 1000",
+    	     "preview": true
+          }'>
+          </div>
+          <div id="grouped_treemap" 
+          class="splunk-view" 
+          data-require="app/d3plus/components/boxplot/boxplot" 
+          data-options='{
+		"managerid": "scatterplot_search",
+		"height": "800",
+		"width": "1000", 
+		"levels": "age",
+		"x_data": {"value": "gender"},
+		"color_field": "sentiment",
+		"y_data": {"value": "age"},
+		"point_size": 10,
+		"tooltip_data": {"children": false}
+          }'>
+          </div>
+        </html>
+      </panel>
+    </row>
+  </form>

@@ -24,11 +24,22 @@
     {
         "id": "scatterplot",
         "title": "Scatterplot",
-        "short-description": "A somewhat more advanced scatterplot using d3plus.",
+        "short-description": "A scatterplot chart using d3plus.",
         "category": "Scatterplots",
         "versions": ["6.2"],
         "sourceFiles": [
             "/static/app/d3plus/components/scatterplot/scatterplot.js"
+        ],
+        "related_links": []
+    },
+    {
+        "id": "boxplot",
+        "title": "Boxplot",
+        "short-description": "A boxplot/scatterplot combo, including top and bottom tukey, and interquartile ranges. This example also includes a color gradient for another field. ",
+        "category": "Boxplots",
+        "versions": ["6.2"],
+        "sourceFiles": [
+            "/static/app/d3plus/components/boxplot/boxplot.js"
         ],
         "related_links": []
     }

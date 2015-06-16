@@ -1,0 +1,34 @@
+<form script="autodiscover.js">
+    <label>Advanced Scatterplot</label>
+    <row>
+      <panel>
+        <html>
+          <h2>Description</h2>
+          <p id="info"></p>
+          <div id="scatterplot_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
+ 	         "search": "
+index=_internal earliest=-5d 
+| bucket _time span=1h 
+| stats avg(bytes) as value, avg(spent) as weight, max(bytes) as color by display_page_search_tab clientip file _time",
+    	     "preview": true
+          }'>
+          </div>
+          <div id="grouped_treemap" 
+          class="splunk-view" 
+          data-require="app/d3plus/components/scatterplot/scatterplot" 
+          data-options='{
+		"managerid": "scatterplot_search",
+		"height": "800",
+		"width": "1000", 
+		"levels": ["display_page_search_tab", "clientip", "file"],
+		"time_field": "_time",
+		"color_field": "value",
+		"x_data": {"value": "value"},
+		"y_data": {"value": "weight"},
+		"point_size": 10
+          }'>
+          </div>
+        </html>
+      </panel>
+    </row>
+  </form>
