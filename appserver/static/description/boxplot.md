@@ -32,31 +32,31 @@
         <td><code>levels</code></td>
         <td>array</td>
         <td>null</td>
-        <td>An array of field names which the visualization will use to nest the data. You can give it just one field name if you don't want to nest your data.<a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#id">here</a>.</td>
+        <td>An array of field names which the visualization will use to nest the data. You can give it just one field name if you don't want to nest your data. Docs <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#id">here</a>.</td>
     </tr>
     <tr>
         <td><code>x_data</code></td>
         <td>object</td>
         <td>{"value": "x", "scale": "linear"}</td>
-        <td>This is an object of key value pairs. The first key is "value" whose default value is "x". The "x" here is the field name that will be charted on the x axis.<a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#x">here</a>.</td>
+        <td>This is an object of key value pairs. The first key is "value" whose default value is "x". The "x" here is the field name that will be charted on the x axis. Docs <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#x">here</a>.</td>
     </tr>
     <tr>
         <td><code>y_data</code></td>
         <td>object</td>
         <td>{"value": "y", "scale": "linear"}</td>
-        <td>This is an object of key value pairs. The first key is "value" whose default value is "y". The "y" here is the field name that will be charted on the y ayis. <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#x">here</a>.</td>
+        <td>This is an object of key value pairs. The first key is "value" whose default value is "y". The "y" here is the field name that will be charted on the y ayis. Docs <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#x">here</a>.</td>
     </tr>
     <tr>
         <td><code>point_size</code></td>
         <td>integer</td>
         <td>25</td>
-        <td>The size of the points. <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#size">here</a>. </td>
+        <td>The size of the points. Docs <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#size">here</a>. </td>
     </tr>
     <tr>
         <td><code>color_field</code></td>
         <td>string</td>
         <td>"color"</td>
-        <td>The field whose values are used to determine the color values. <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#color">here</a>.</td>
+        <td>The field whose values are used to determine the color values. Docs <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations#color">here</a>.</td>
     </tr>
     <tr>
         <td><code>tooltip_data</code></td>

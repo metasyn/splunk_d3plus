@@ -25,7 +25,8 @@ index=_internal earliest=-5d
 		"color_field": "value",
 		"x_data": {"value": "value"},
 		"y_data": {"value": "weight"},
-		"point_size": 10
+		"point_size": 10,
+		"tooltip_data": {"children": false}
           }'>
           </div>
         </html>

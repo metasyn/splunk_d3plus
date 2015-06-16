@@ -31,7 +31,14 @@ define(function(require, exports, module) {
             },
             "point_size": 25,
             "color_field": "color",
-            "tooltip_data": {"children": true}
+            "tooltip_data": {"children": true},
+            "ui" : [
+                {
+                  "label": "Visualization Type",
+                  "method": "type",
+                  "value" : ["scatter", "box"]
+                }
+              ]
         },
         output_mode: "json",
 
@@ -81,7 +88,9 @@ define(function(require, exports, module) {
 
             var x_data = this.settings.get("x_data");
             var y_data = this.settings.get("y_data");
-            
+          
+            var ui = this.settings.get("ui");
+
             // this is where we create the actual visualization
             // but we haven't attached the data to it yet
             var visualization = d3plus.viz()
@@ -92,13 +101,7 @@ define(function(require, exports, module) {
               .time(time_field)
               .color(color_field)
               .tooltip(tooltip_data)
-              .ui([
-                {
-                  "label": "Visualization Type",
-                  "method": "type",
-                  "value" : ["scatter", "box"]
-                }
-              ]);
+              .ui(ui);
 
             return visualization;
         },

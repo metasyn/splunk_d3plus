@@ -84,7 +84,7 @@ modtime = 1433890690.445039000
 
 [views/grouped_treemap]
 version = 6.2.3
-modtime = 1434337081.410609000
+modtime = 1434485401.962954000
 
 [views/timeline_treemap]
 version = 6.2.3
@@ -92,11 +92,11 @@ modtime = 1434337127.205595000
 
 [views/boxplot]
 version = 6.2.3
-modtime = 1434478612.371116000
+modtime = 1434484622.624081000
 
 [views/scatterplot]
 version = 6.2.3
-modtime = 1434347934.147929000
+modtime = 1434485586.090454000
 
 [views/scatterplot2]
 version = 6.2.3

@@ -23,7 +23,15 @@ define(function(require, exports, module) {
             "levels": [],
             "color_field": "color",
             "size_field": "count",
-            "time_field": "_time"
+            "time_field": "_time",
+            "tooltip_data": {"children": true},
+            "ui" : [
+                {
+                  "label": "Visualization Type",
+                  "method": "type",
+                  "value" : ["scatter", "box"]
+                }
+              ]
         },
         output_mode: "json",
 
@@ -69,7 +77,8 @@ define(function(require, exports, module) {
             var size_field = this.settings.get("size_field");
             var time_field = this.settings.get("time_field");
             var color_field = this.settings.get("color_field");
-
+            var ui = this.settings.get("ui");
+            var tooltip_data = this.settings.get("tooltip_data");
 
             // this is where we create the actual visualization
             // but we haven't attached the data to it yet
@@ -78,6 +87,8 @@ define(function(require, exports, module) {
               .type("tree_map")
               .id(levels)
               .size(size_field)
+              .ui(ui)
+              .tooltip(tooltip_data)
               .time(time_field);
           
             return visualization;

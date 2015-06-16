@@ -21,7 +21,8 @@
 		"width": "1000", 
 		"levels": ["action", "info"],
 		"size_field": "count",
-		"time_field": "_time"
+		"time_field": "_time",
+		"tooltip_data": {"children": false}
           }'>
           	<div>
               <h1> Padding </h1>

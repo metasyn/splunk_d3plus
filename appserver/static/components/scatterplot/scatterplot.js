@@ -17,7 +17,6 @@ define(function(require, exports, module) {
             "managerid": null,
             "data": "preview",
             "height": "400",
-            // that we can zoom into
             "width": "600",
             "time_field" : "",
             "levels": [],
@@ -30,7 +29,15 @@ define(function(require, exports, module) {
               "scale": "linear"
             },
             "point_size": 25,
-            "color_field": "color"
+            "color_field": "color",
+            "tooltip_data": {"children": true},
+            "ui" : [
+                {
+                  "label": "Visualization Type",
+                  "method": "type",
+                  "value" : ["scatter", "box"]
+                }
+              ]
         },
         output_mode: "json",
 
@@ -76,6 +83,8 @@ define(function(require, exports, module) {
             var point_size = this.settings.get("point_size");
             var time_field = this.settings.get("time_field");
             var color_field = this.settings.get("color_field");
+            var ui = this.settings.get("ui");
+            var tooltip_data = this.settings.get("tooltip_data");
 
             var x_data = this.settings.get("x_data");
             var y_data = this.settings.get("y_data");
@@ -89,13 +98,8 @@ define(function(require, exports, module) {
               .size(point_size)
               .time(time_field)
               .color(color_field)
-              .ui([
-                {
-                  "method": "color",
-                  "type": "drop",
-                  "value" : [{"Level": levels[0]}, {"Color Field": color_field}]
-                }
-              ]);
+              .tooltip(tooltip_data)
+              .ui(ui);
 
             return visualization;
         },
