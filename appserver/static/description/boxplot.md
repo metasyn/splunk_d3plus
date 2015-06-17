@@ -1,7 +1,5 @@
 <h4>Options</h4>
-<h5>
-  All the options here almost entirely reference the methods defined <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations">here</a>. Most of the names have stayed the same, but a few are slightly different. You can see what these map to, in the cases where they are different, by looking at the d3plus viz objects in the createView and updateView functions.
-</h5>
+<p>The majority of these options come from the documentation on d3plus. You can see all the methods <a href="https://github.com/alexandersimoes/d3plus/wiki/Visualizations">here</a>. You can see what these map to, in the cases where they are different, by looking at the d3plus viz objects in the createView and updateView functions.</p>
 <table class="table table-striped table-bordered">
     <tbody>
     <tr>
