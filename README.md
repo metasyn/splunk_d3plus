@@ -1,82 +1,60 @@
-<dashboard script="tutorial.js" showsource="false">
-  <label>Tutorial</label>
-  <row>
-    <panel>
-      <html>
-        <h2>App Info</h2>
-        <p>This app (<code>custom_vizs</code>) is simply a convenient reference for many custom JS visualizations. Most of them are not created by me (hobbes3). Please see the Sources section below for credits.</p>
-        <h2>JS Info</h2>
-        <p>
-          Custom JS visualizations can be used in Splunk by including special JS files that extends and modifies the <code>SimpleSplunkView</code> SplunkJS object. All custom JS (and other static files like CSS and images) goes in the app's <code>appserver/static/</code> folder. These JS are then called from SimpleXML. Creating the JS files require server access, but <i>using</i> the custom visualization only require access to Splunk UI (SimpleXML).
-        </p>
-        <h2>Instructions</h2>
-        <ul>
-          <li>If you don't want to depend on this app, then copy the necessary files in <code>custom_viz/appserver/static/&lt;js_viz&gt;/</code> and <code>autodiscover.js</code> to your own app's <code>appserver/static/</code>. Some visualizations like the globe uses its own, unique <code>autodiscover.js</code> file.</li>
-          <li>At the top of your dashboard load <code>autodiscover.js</code> like <code>&lt;form script="autodiscover.js"&gt;</code>.</li>
-          <li>Call the custom visualization using 2 <code>&lt;div&gt;</code>'s in a HTML panel (see <b>SimpleXML Declaration</b> below).</li>
-        </ul>  
-      </html>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <html>
-        <h2>SimpleXML Declaration</h2>
-        <img src="/static/app/custom_vizs/tutorial.png" width="1000px"/>
-      </html>
-    </panel>
-  </row>
-  <row>
-    <panel>
-      <html>
-        <h2>Tips</h2>
-        <ul>
-          <li>Making any dashboard modifications via "Edit Panels" <i>will destroy any custom formatting</i> in the two <code>&lt;div&gt;</code>'s (Splunk will make each <code>&lt;div&gt;</code> into a single line and escape a bunch for characters). One way around this is to keep a copy of the formatted <code>&lt;div&gt;</code>'s before using "Edit Panels".</li>
-          <li>To really understand how the custom visualization JS code works, use a browser dev tool and set breakpoints in various lines (especially inside <code>createView</code>, <code>formatData</code>, and <code>updateView</code> of the extended <code>SimpleSplunkView</code> code).</li>
-          <li>To use a saved search or post process search, use <code>splunkjs/mvc/savedsearchmanager</code> or <code>splunkjs/mvc/postprocessmanager</code>, respectively. Note that these both require <code>managerid</code>.</li>
-          <li>More info about various SplunkJS objects:
-            <ul>
-              <li><a href="http://docs.splunk.com/DocumentationStatic/WebFramework/1.1/compref_simplesplunk.html">SimpleSplunkView</a></li>
-              <li><a href="http://docs.splunk.com/DocumentationStatic/WebFramework/1.1/compref_searchmanager.html">SearchManager</a></li>
-              <li><a href="http://docs.splunk.com/DocumentationStatic/WebFramework/1.1/compref_savedsearchmanager.html">SavedSearchManager</a></li>
-              <li><a href="http://docs.splunk.com/DocumentationStatic/WebFramework/1.1/compref_postprocessmanager.html">PostProcessManager</a></li>
-              <li>All SplunkJS objects are located in <code>$SPLUNKHOME$/share/splunk/search_mrsparkle/exposed/js/splunkjs/mvc/</code>.</li>
-            </ul>
-          </li>
-        </ul>
-        <h2>Troubleshooting</h2>
-        <ul>
-          <li>Check that the <code>managerid</code> matches the id of the <code>searchmanager</code>'s <code>&lt;div&gt;</code>.</li>
-          <li>Check for the correct path for <code>data-require</code> for the visualization "container" <code>&lt;div&gt;</code>. It should be in the form of <code>app/&lt;app_name&gt;/path/to/&lt;js_file_without_extension&gt;</code>.</li>
-          <li>Check that all XML attributes are properly escaped. For example, make sure all <code>'&lt;&gt;"\</code> characters are escaped in the search query.</li>
-          <li>Check that all tokens are wrapped in the <code>token_safe</code> syntax and are defined by 2 dollar signs on each side (like <code>$$$$token$$$$</code>).</li>
-          <li>Check that the value of <code>data-options</code> is in valid JS object (not necessary JSON since single quotes can be used). In other words, check for comma and quote placements.</li>
-          <li>Check for any JS errors in the browser (via some dev tool).</li>
-          <li>If all else fail then start with the working examples then modify it in small steps to see where it breaks.</li>
-        </ul>
-        <h2>Sources</h2>
-        <ul>
-          <li><a href="https://splunkbase.splunk.com/app/1603/">Splunk 6.x Dashboard Examples</a></li>
-          <li><a href="https://splunkbase.splunk.com/app/1613/">Splunk Web Framework Toolkit</a></li>
-          <li><a href="https://splunkbase.splunk.com/app/1741/">Gantt Chart visualization</a></li>
-          <li><a href="http://bost.ocks.org/mike/uberdata/">Uber Rides by Neighborhood</a></li>
-          <li><a href="https://www.chromeexperiments.com/globe">WebGL Globe - Chrome Experiments</a></li>
-          <li><a href="http://bl.ocks.org/mbostock/4339083">Collapsible Tree</a></li>
-          <li><a href="http://bl.ocks.org/jensgrubert/7789216">D3.js Boxplot with Axes and Labels</a></li>
-          <li><a href="http://bl.ocks.org/mbostock/2066415">Hive Plot (Links)</a></li>
-        </ul>
-        <h2>Thanks to</h2>
-        <ul>
-          <li><b>Itay Neeman</b>: The person who got me all started with Splunk + JS during one of the App Summits.</li>
-          <li><b>David Foster</b>, <b>Matthew Elting</b>, and <b>Siegfried Puchbauer</b>: Our brilliant devs who are nice enough to answer some of my stupid questions.</li>
-          <li><b>Genti Zaimi</b>, <b>Thomas Mann</b>, and <b>Roy Moranz</b>: My current and previous managers for supporting my SplunkJS journey.</li>
-          <li><b>Misty Gibbs</b>: Allowing me to speak at Splunk's .conf.</li>
-          <li><b>Vladimir Skoryk</b> and <b>Jackson Sie</b>: Helped me here and there.</li>
-          <li><b>Tom LaGatta</b> and <b>Stepehen Sorkin</b>: Boxplot, enough said.</li>
-          <li><b>Grigori Melnik</b>: Gave me some practice on how to explain how to create and use custom JS visualizations to others.</li>
-          <li><b>Alexandar Johnson</b>: Helped me a lot on the source code viewer (ported from the Dashboard 6.x Examples App).</li>
-        </ul>
-      </html>
-    </panel>
-  </row>
-</dashboard>
+# Using [D3Plus](http://d3plus.org/) Visualizations
+
+First things first: download the Splunk 6.x dashboard examples, and (almost more importantly), Satoshi's Custom Visualizations app. These two apps are crucial, and more or less considered preqrequisites to understanding or utilizing this app fully.
+
+- [Splunk 6.x Dashboard Examples](https://splunkbase.splunk.com/app/1603/)
+- [Custom Visualizations](https://splunkbase.splunk.com/app/2717/) - Satoshi has outlined a lot of relevant details in the **tutorial**.
+
+## the basic usage
+
+Go to examples and look at both the dashboard xml, and the javascript (bottom of the page). If you like a visualization, you can copy the files into your own `appserver/static`. 
+
+After that, you need 2 parts added to your dashboard.
+
+####1.) The Search  - splunk-manager div
+
+Here's an example:
+```
+<div id="custom_viz_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
+        "search": "index=foo sourcetype=bar | stats count",
+        "preview": true
+}'>
+</div>
+```
+The trickiest part here is making sure you ESCAPE any XML attributes, namely, `'<>"\,` that might be used in your search. Of course quotes come up, but remember angle brackets too (e.g. named field extractions). Commas too will break the search. 
+
+
+####2.) The View - splunk-view div
+
+Here is an example:
+
+```
+<div id="custom_viz" class="splunk-view" data-require="app/my_apps_name/path/to/my/needed/javascript" data-options='{
+    "managerid": "custom_viz_search",
+    "height": 800,
+    "x" : {"value": "count", "scale": "log"},
+    "boolean": true
+}'>
+```
+Trouble Shooting Tips from Satoshi's Custom Visualizations app:
+
+ - Check that the managerid matches the id of the searchmanager's `<div>`.
+ - Check for the correct path for data-require for the visualization "container" `<div>`. It should be in the form of `app/<app_name>/path/to/<js_file_without_extension>`.
+ - Check that all XML attributes are properly escaped. For example, make sure all `'<>"\` characters are escaped in the search query.
+ - Check that all tokens are wrapped in the token_safe syntax and are defined by 2 dollar signs on each side (like `$$token$$`).
+ - Check that the value of data-options is in valid JS object (not necessary JSON since single quotes can be used). In other words, check for comma and quote placements.
+ - Check for any JS errors in the browser (via some dev tool).
+ - If all else fail then start with the working examples then modify it in small steps to see where it breaks.
+
+
+## the main idea
+
+Splunk is highly configurable and easily extendible. This app shows how we can quite easily extend a Splunk dashboard to use d3plus visualizations. See the details in the docs [here](http://dev.splunk.com/view/webframework-splunkjsstack/SP-CAAAES5). 
+
+In order to get things working, there are a few steps to creating a totally custom visualization. See a small demo / template [here](https://gist.github.com/metasyn/70e5e3599abe76c37a07). A simplified step list might look like:
+
+ - List dependencies
+ - Specify data options
+ - Create View
+ - Format Data
+ - Update View
