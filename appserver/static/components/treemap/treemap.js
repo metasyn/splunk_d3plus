@@ -17,21 +17,13 @@ define(function(require, exports, module) {
             "managerid": null,
             "data": "preview",
             "height": "400",
-            // these represent the different 'levels'
-            // that we can zoom into
             "width": "600",
             "levels": [],
             "color_field": "color",
             "size_field": "count",
-            "time_field": "_time",
+            "time_field": "",
             "tooltip_data": {"children": true},
-            "ui" : [
-                {
-                  "label": "Visualization Type",
-                  "method": "type",
-                  "value" : ["scatter", "box"]
-                }
-              ]
+            "ui" : {"align": "center"} 
         },
         output_mode: "json",
 
@@ -98,10 +90,16 @@ define(function(require, exports, module) {
         // it becomes the second arugment ('data') for updateView
         formatData: function(data) {
           var size_field = this.settings.get("size_field");
+          var color_field = this.settings.get("color_field");
 
           // Convert the string value to number
           data = _(data).map(function(f){
-            f[size_field] = parseInt(f[size_field]);
+            if (parseInt(f[size_field])){
+              f[size_field] = parseInt(f[size_field]);
+            }
+            if (parseInt(f[color_field])){
+              f[color_field] = parseInt(f[color_field]);
+            }
             return f;
           });
           return data;

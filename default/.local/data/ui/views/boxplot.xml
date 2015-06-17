@@ -26,12 +26,7 @@
 		"color_field": "sentiment",
 		"y_data": {"value": "age"},
 		"point_size": 10,
-		"tooltip_data": {"children": false},
-		"ui": [{
-			"label": "Visualization Type",
-			"method" : "type",
-			"value" : ["scatter", "box"]
-		}]
+		"tooltip_data": {"children": false}
           }'>
           </div>
         </html>

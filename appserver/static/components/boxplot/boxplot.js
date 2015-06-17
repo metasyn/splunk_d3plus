@@ -32,13 +32,7 @@ define(function(require, exports, module) {
             "point_size": 25,
             "color_field": "color",
             "tooltip_data": {"children": true},
-            "ui" : [
-                {
-                  "label": "Visualization Type",
-                  "method": "type",
-                  "value" : ["scatter", "box"]
-                }
-              ]
+            "ui" : true 
         },
         output_mode: "json",
 

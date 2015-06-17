@@ -8,8 +8,7 @@
           <div id="grouped_treemap_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
  	         "search": "index=_audit earliest=-1mon@mon
 | bucket _time span=1d
-| rename _time as time
-| stats count by action info time",
+| stats count by action info _time",
     	     "preview": true
           }'>
           </div>
@@ -22,7 +21,7 @@
 		"width": "1000", 
 		"levels": ["action", "info"],
 		"size_field": "count",
-		"time_field": "time",
+		"time_field": "_time",
 		"tooltip_data": {"children": false}
           }'>
           	<div>

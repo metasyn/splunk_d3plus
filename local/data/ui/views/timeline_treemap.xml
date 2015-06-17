@@ -6,9 +6,9 @@
           <h2>Description</h2>
           <p id="info"></p>
           <div id="timeline_treemap_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
- 	         "search": "index=_audit earliest=-1mon@mon
-| bucket _time span=1d
-| stats count by action info _time",
+ 	         "search": "index=_internal earliest=-5d 
+| bucket _time span=1h 
+| stats avg(bytes) as value, avg(spent) as weight, max(bytes) as color by display_page_search_tab clientip file _time",
     	     "preview": true
           }'>
           </div>
@@ -19,8 +19,8 @@
 		"managerid": "timeline_treemap_search",
 		"height": "800",
 		"width": "1000", 
-		"levels": "info",
-		"size_field": "count",
+		"levels": ["file"],
+		"size_field": "weight",
 		"time_field": "_time"
           }'>
           	<div>

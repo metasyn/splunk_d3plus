@@ -31,13 +31,7 @@ define(function(require, exports, module) {
             "point_size": 25,
             "color_field": "color",
             "tooltip_data": {"children": true},
-            "ui" : [
-                {
-                  "label": "Visualization Type",
-                  "method": "type",
-                  "value" : ["scatter", "box"]
-                }
-              ]
+            "ui" : true 
         },
         output_mode: "json",
 
@@ -113,10 +107,17 @@ define(function(require, exports, module) {
           var color_field = this.settings.get("color_field");
           
           // Convert the string values to numbers
+          // that is, if they can be parsed.
           data = _(data).map(function(f){
-            f[x_data.value] = parseFloat(f[x_data.value]);
-            f[y_data.value] = parseFloat(f[y_data.value]);
-            f[color_field] = parseFloat(f[color_field]);
+            if (parseFloat(f[x_data.value])){
+              f[x_data.value] = parseFloat(f[x_data.value]);
+            }
+            if (parseFloat(f[y_data.value])){
+              f[y_data.value] = parseFloat(f[y_data.value]);
+            }
+            if (parseFloat(f[color_field])){
+              f[color_field] = parseFloat(f[color_field]);
+            }
             return f;
           });
 

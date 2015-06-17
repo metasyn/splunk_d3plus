@@ -84,23 +84,26 @@ modtime = 1433890690.445039000
 
 [views/grouped_treemap]
 version = 6.2.3
-modtime = 1434485401.962954000
+modtime = 1434583505.576094000
 
 [views/timeline_treemap]
 version = 6.2.3
-modtime = 1434337127.205595000
+modtime = 1434582443.698920000
 
 [views/boxplot]
 version = 6.2.3
-modtime = 1434484622.624081000
+modtime = 1434583907.649838000
 
 [views/scatterplot]
 version = 6.2.3
-modtime = 1434485586.090454000
+modtime = 1434580011.272067000
 
 [views/scatterplot2]
+access = read : [ * ], write : [ admin, power ]
+export = none
+owner = admin
 version = 6.2.3
-modtime = 1434341330.742583000
+modtime = 1434583150.859001000
 
 [views/simple_scatterplot]
 version = 6.2.3
