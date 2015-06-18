@@ -42,5 +42,14 @@
             "/static/app/d3plus/components/boxplot/boxplot.js"
         ],
         "related_links": []
+    },
+    {
+        "id": "documentation",
+        "title": "Documentation",
+        "short-description": "An excerpt of documentation from d3plus with some notes",
+        "category": "Documentation",
+        "versions": ["6.2"],
+        "sourceFiles": [],
+        "related_links": []
     }
 ]
