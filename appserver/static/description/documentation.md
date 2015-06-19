@@ -6,14 +6,15 @@
 <p>The biggest take away is just noticing that certain data options map to certain methods of a d3plus viz.</p>
 <pre><code>Legend: .nameOfMethod() - &quot;name in data options&quot; : (accepted values)
 
-.id() - &quot;levels&quot; : ( *String* | *Array* | *Object* )
-.time() - &quot;time_field&quot; : ( `false` | *String* | *Function* | *Object* )
-.x() - &quot;x_data&quot; : ( `false` | *String* | *Function* | *Object* )
-.y() - &quot;y_data&quot; : ( `false` | *String* | *Function* | *Object* )
-.size() - &quot;size&quot; : ( `false` | *String* | *Number* | *Function* | *Object* )
-.color() - &quot;color_field&quot; : ( *String* | *Function* | *Object* )
-.tooltip() - &quot;tooltip_data&quot; : ( *Array* | *Object* )
-.ui() - &quot;ui&quot; : ( `false` | *Array* | *Object* )
+.id() - &quot;levels&quot; : ( String | Array | Object )
+.time() - &quot;time_field&quot; : ( false | String | Function | Object )
+.x() - &quot;x_data&quot; : ( false | String | Function | Object )
+.y() - &quot;y_data&quot; : ( false | String | Function | Object )
+.size() - &quot;size&quot; : ( false | String | Number | Function | Object )
+.color() - &quot;color_field&quot; : ( String | Function | Object )
+.tooltip() - &quot;tooltip_data&quot; : ( Array | Object )
+.ui() - &quot;ui&quot; : ( false | Array | Object )
+.aggs() - &quot;aggs&quot; : ( Object )
 </code></pre><p>where <code>.nameOfMethod</code> is the name in the javascript and the <code>&quot;name in data options&quot;</code> is the key in the key-value pairs in the data-options of the dashboard&#39;s html panel. </p>
 <h1 id="data-options">data options</h1>
 <hr>
@@ -516,5 +517,13 @@
 </tbody>
 </table>
 <hr>
+### .aggs() - aggs : ( Object)
 
+Defines how specific values should be aggregated when the **d3plus** aggregates your data. The *Object* passed should contain key/value pairs that match the keys in your data with the aggreagation value requested. For example, if you wanted all values of the key "wage" to use D3's "mean" comparator, then you would pass the following:
+
+```js
+.aggs({"wage": "mean"})
+```
+
+The *String* value passed with each key needs to be one of D3's predefined [array comparators](https://github.com/mbostock/d3/wiki/Arrays#d3_min), such as "mean", "median", "min", or "max". By default, all keys use [d3.sum()](https://github.com/mbostock/d3/Arrays#d3_sum). Additionally, you can also pass a *Function* as an aggregation method for a key. D3plus will pass the *Function* the array of data objects needing aggregation, and the *Function* should return the final aggregated value.
 </body></html>

@@ -23,7 +23,8 @@ define(function(require, exports, module) {
             "size_field": "count",
             "time_field": "",
             "tooltip_data": {"children": true},
-            "ui" : {"align": "center"} 
+            "ui" : true,
+            "aggs" : false
         },
         output_mode: "json",
 
@@ -71,6 +72,7 @@ define(function(require, exports, module) {
             var color_field = this.settings.get("color_field");
             var ui = this.settings.get("ui");
             var tooltip_data = this.settings.get("tooltip_data");
+            var aggs = this.settings.get("aggs");
 
             // this is where we create the actual visualization
             // but we haven't attached the data to it yet
@@ -82,7 +84,10 @@ define(function(require, exports, module) {
               .ui(ui)
               .tooltip(tooltip_data)
               .time(time_field);
-          
+        
+            // add the aggregators if they're defined
+            if(aggs){visualization.aggs(aggs)}
+
             return visualization;
         },
 

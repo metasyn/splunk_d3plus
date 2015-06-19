@@ -31,7 +31,8 @@ define(function(require, exports, module) {
             "point_size": 25,
             "color_field": "color",
             "tooltip_data": {"children": true},
-            "ui" : true 
+            "ui" : true,
+            "aggs" : false
         },
         output_mode: "json",
 
@@ -83,6 +84,8 @@ define(function(require, exports, module) {
             var x_data = this.settings.get("x_data");
             var y_data = this.settings.get("y_data");
             
+            var aggs = this.settings.get("aggs");
+
             // this is where we create the actual visualization
             // but we haven't attached the data to it yet
             var visualization = d3plus.viz()
@@ -94,6 +97,9 @@ define(function(require, exports, module) {
               .color(color_field)
               .tooltip(tooltip_data)
               .ui(ui);
+
+            // add the aggregator if its been defined
+            if(aggs){visualization.aggs(aggs)}
 
             return visualization;
         },
