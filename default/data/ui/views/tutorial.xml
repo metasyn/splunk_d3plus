@@ -1,4 +1,4 @@
-<dashboard script="tutorial.js" showsource="false">
+<dashboard script="rainbow-custom.min.js,tutorial.js,splunk.syntax.js" stylesheet="solarized-dark.css" showsource="false">
   <label>App Information</label>
   <row>
     <panel>
@@ -43,7 +43,7 @@
       
         <p>Here&#39;s an example:</p>
         <pre>
-      <code>&lt;div id=&quot;custom_viz_search&quot; class=&quot;splunk-manager&quot; data-require=&quot;splunkjs/mvc/searchmanager&quot; data-options=&#39;{
+      <code data-language="xml">&lt;div id=&quot;custom_viz_search&quot; class=&quot;splunk-manager&quot; data-require=&quot;splunkjs/mvc/searchmanager&quot; data-options=&#39;{
           &quot;search&quot;: &quot;index=foo sourcetype=bar | stats count&quot;,
           &quot;preview&quot;: true
       }&#39;&gt;
@@ -59,7 +59,7 @@
       
         <p>Here is an example:</p>
         <pre>
-      <code>&lt;div id=&quot;custom_viz&quot; class=&quot;splunk-view&quot; data-require=&quot;app/my_apps_name/path/to/my/needed/javascript&quot; data-options=&#39;{
+      <code data-language="xml">&lt;div id=&quot;custom_viz&quot; class=&quot;splunk-view&quot; data-require=&quot;app/my_apps_name/path/to/my/needed/javascript&quot; data-options=&#39;{
           &quot;managerid&quot;: &quot;custom_viz_search&quot;,
           &quot;height&quot;: 800,
           &quot;x&quot; : {&quot;value&quot;: &quot;count&quot;, &quot;scale&quot;: &quot;log&quot;},
@@ -113,8 +113,7 @@
         "http://dev.splunk.com/view/webframework-splunkjsstack/SP-CAAAES5">here</a>.</p>
       
         <p>In order to get things working, there are a few steps to creating a
-        totally custom visualization. See a small demo / template <a href=
-        "https://gist.github.com/metasyn/70e5e3599abe76c37a07">here</a>. A simplified
+        totally custom visualization. See a small demo / template below. A simplified
         step list might look like:</p>
       
         <ul>
@@ -128,6 +127,162 @@
       
           <li>Update View</li>
         </ul>
+        
+        Here is a <a href=
+        "https://gist.github.com/metasyn/70e5e3599abe76c37a07">sample</a>:
+        <pre>
+          <code data-language="javascript">
+define(function(require, exports, module) {
+ // STEP 1.) Initalization of your setup
+
+  // Add your dependenciences here,
+  // Note, no .js extension when using require
+  // e.g.
+  var d3 = require("../d3/d3");
+  var d3 = require("../d3plus/d3plus");
+  var underscore = require("../underscore");
+
+  var SimpleSplunkView = require("splunkjs/mvc/simplesplunkview");
+
+  // Name your object
+  // Replace all "MyVisualization" with whatever you choose.
+  var MyVisualization = SimpleSplunkView.extend({
+    className: "splunk-toolkit-MyVisualization",
+
+    // STEP 2.) Specify all the options that might need to be pasted to your visualization.
+
+    options: {
+      "managerid": null, // required
+      "data": "preview", // required
+
+      // Everything below is what you might customize.
+      "height": "400",
+      "width": "600",
+      "boolean": true,
+      "x": {
+        "value": "count",
+        "scale": "linear"
+      },
+      "x": {
+        "value": "count",
+        "scale": "linear"
+      }
+    },
+    output_mode: "json", // required
+
+    // the next two functions handle resizes
+    initialize: function() {
+      SimpleSplunkView.prototype.initialize.apply(this,
+        arguments);
+
+      $(window).resize(this, _.debounce(this._handleResize,
+        20));
+    },
+    _handleResize: function(e) {
+      // e.data is the this pointer passed to the callback.
+      // here it refers to this object and we call render()
+      e.data.render();
+    },
+
+    // STEP 3.) Creating the Inital View
+    // the createView function
+
+    // createView takes no arguments
+    // it creates the view we need
+    // then returns the visualization as the first
+    // arugment (named 'viz') to updateView, below
+    createView: function() {
+
+      // this gets rid of the "waiting for data message"
+      // and assures us that we have a clean slate
+      this.$el.html("");
+
+      // We need to retrieve the data options we specified above.
+      // In the example below, we create a container, and set the
+      // container's height and width based on the option values.
+
+      // get the height and width from the options
+      // and set the div container to that size
+      var height = this.settings.get("height");
+      var width = this.settings.get("width");
+      this.$el.height(height);
+      this.$el.width(width);
+
+      // get the div id, adding a # to reference the fact
+      // that it is going to be an id when referencedd
+      var divId = "#" + this.$el.attr("id");
+
+      // create a container for the viz inside this
+      // this, in this case, references the div we have in our dashboard
+      $(divId).append('<div id="viz_container"></div>');
+
+      // get the settings, once again from the options above
+      var data_values = this.settings.get("x")["value"];
+      var boolean = this.settings.get("boolean");
+
+      // this is where we create the actual visualization
+      // but we haven't attached the data to it yet
+      var visualization = d3plus.viz()
+        .container("#viz_container")
+        .type("box")
+        .id(data_values)
+        .tooltip({
+          "children": boolean
+        })
+
+      return visualization;
+    },
+
+    // STEP 4.) Format the data from Splunk
+    // the formatData function
+
+    // Making the data look how we want it to for updateView to do its job
+    // it becomes the second arugment ('data') for updateView
+    formatData: function(data) {
+
+      var boolean = this.settings.get("boolean");
+      var y_data = this.settings.get("y");
+      var x_data = this.settings.get("x");
+
+      // Here is some custom function, to convert the x and y values to numbers
+      // instead of leaving them as strings
+
+      data = _(data).map(function(f) {
+        if (parseFloat(f[x_data.value])) {
+          f[x_data.value] = parseFloat(f[x_data.value]);
+        }
+        if (parseFloat(f[y_data.value])) {
+          f[y_data.value] = parseFloat(f[y_data.value]);
+        }
+        return f;
+      });
+
+      return data;
+    },
+
+    // STEP 5.) Updating the View
+    // the updateView function
+
+    // this is the final step
+    // where the data actually meets the visualization
+    // in this case, our visualization from createView is viz
+    // and our data from formatData is data
+    updateView: function(viz, data) {
+
+      var y_data = this.settings.get("y");
+      var x_data = this.settings.get("x");
+
+      viz
+        .dev(true)
+        .data(data) // the general data
+        .x(x_data)  // the field for x
+        .y(y_data)  // the field for y
+        .draw();    // finally, done !
+    }
+  });
+  return MyVisualization;
+});</code>
+        </pre>
       </html>
     </panel>
   </row>

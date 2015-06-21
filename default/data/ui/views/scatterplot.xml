@@ -3,14 +3,12 @@
     <row>
       <panel>
         <html>
-          <h2>Description</h2>
+          <h2><a href="https://github.com/ContinuumIO/cdx/blob/master/cdx/remotedata/auto-mpg.csv">Automobile MPG Data</a>
+          <p>X = Horsepower, Y = Miles-Per-Gallon. Try clicking on some of the points to see more. Cylinder is the first grouping, and within that you can change
+            the data that represents the colors in the UI under the plot.</p></h2>
           <p id="info"></p>
           <div id="scatterplot_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
- 	         "search": "
-|inputlookup users.csv
-| eval age = tonumber(strftime(now(), \"%Y\")) - tonumber(mvindex(split(bday,\"-\"),0))
-| table gender country karma sentiment age 
-| tail 1000",
+ 	         "search": "|inputlookup auto-mpg.csv",
     	     "preview": true
           }'>
           </div>
@@ -21,12 +19,18 @@
 		"managerid": "scatterplot_search",
 		"height": "800",
 		"width": "1000", 
-		"levels": ["gender", "country"],
-		"color_field": "age",
-		"x_data": {"value": "age"},
-		"y_data": {"value": "karma"},
+		"levels": ["cyl", "name"],
+		"color_field": "weight",
+		"x_data": {"value": "hp"},
+		"y_data": {"value": "mpg"},
 		"point_size": 10,
-		"tooltip_data": {"children": false}
+		"tooltip_data": {"children": false},
+		"aggs": {"hp" : "max", "mpg": "max", "weight": "mean"},
+		"ui": [{
+			"method": "color",
+			"label": "Coloring",
+			"value": ["cyl", "origin", "weight"]
+		}]
           }'>
           </div>
         </html>
