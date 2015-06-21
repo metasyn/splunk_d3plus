@@ -142,7 +142,6 @@ define(function(require, exports, module) {
           // d3plus has a data and a draw method
           // that we are using to finalize our visualization
           viz
-            .dev(true)
             .data(data)
             .x(x_data)
             .y(y_data)
