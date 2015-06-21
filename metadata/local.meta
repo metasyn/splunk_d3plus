@@ -4,7 +4,7 @@ modtime = 1432766805.588891000
 
 [views/tutorial]
 version = 6.2.3
-modtime = 1434571006.679340000
+modtime = 1434915881.181273000
 
 [views/viz_bubblechart]
 version = 6.2.2
@@ -92,18 +92,15 @@ modtime = 1434582443.698920000
 
 [views/boxplot]
 version = 6.2.3
-modtime = 1434583907.649838000
+modtime = 1434913155.054118000
 
 [views/scatterplot]
 version = 6.2.3
-modtime = 1434580011.272067000
+modtime = 1434914555.729275000
 
 [views/scatterplot2]
-access = read : [ * ], write : [ admin, power ]
-export = none
-owner = admin
 version = 6.2.3
-modtime = 1434583150.859001000
+modtime = 1434915468.468534000
 
 [views/simple_scatterplot]
 version = 6.2.3
