@@ -6,10 +6,12 @@
         <h1 id="using-d3plus-http-d3plus-org-visualizations">Using <a href=
         "http://d3plus.org/">D3Plus</a> Visualizations</h1>
       
-        <p>First things first: download the Splunk 6.x dashboard examples, and
-        (almost more importantly), Satoshi&#39;s Custom Visualizations app. These two
-        apps are crucial, and more or less considered preqrequisites to understanding
-        or utilizing this app fully.</p>
+        <p>First things first: download the Splunk 6.x dashboard examples, the Custom Visualizations app. 
+        These two apps are crucial, and more or less considered preqrequisites to understanding
+        or utilizing this app fully. They will lead you with examples through getting custom visualizations 
+        into your dashboards. This app can be thought of as an extension to those, specifically to show how
+        d3plus is easy to integrate and fun to use.
+        </p>
       
         <ul>
           <li>
@@ -20,7 +22,7 @@
           <li>
             <a href="https://splunkbase.splunk.com/app/2717/">Custom
             Visualizations</a> - Satoshi has outlined a lot of relevant details in
-            the <strong>tutorial</strong> in his app.
+            the <strong>tutorial</strong> in his app. 
           </li>
         </ul>
       </html>
@@ -32,11 +34,11 @@
       
         <h1 id="the-basic-usage">the basic usage</h1>
       
-        <p>Go to examples and look at both the dashboard xml, and the javascript
+        <p>Go to examples and look at both the dashboard xml and the javascript
         (bottom of the page). If you like a visualization, you can copy the files
         into your own <code>appserver/static</code>.</p>
       
-        <p>After that, you need 2 parts added to your dashboard.</p>
+        <p>After that, you will need two html panels added to your dashboard.</p>
       
         <h2 id="1-the-search-splunk-manager-div">1.) The Search - splunk-manager
         div</h2>
@@ -280,9 +282,14 @@ define(function(require, exports, module) {
         .draw();    // finally, done !
     }
   });
+            
   return MyVisualization;
 });</code>
         </pre>
+      </html>
+      <html>
+        
+        <h3>Made by <a href="http://metasyn.pw">Xander</a> - xander@splunk.com</h3>
       </html>
     </panel>
   </row>

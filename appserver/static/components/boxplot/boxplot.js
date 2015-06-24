@@ -7,10 +7,6 @@ define(function(require, exports, module) {
     var _ = require("underscore");
     var SimpleSplunkView = require("splunkjs/mvc/simplesplunkview");
 
-    // I'm not sure if this is necessary
-    // I want to make sure d3plus is loaded though
-    require("splunkjs/mvc/simplexml/ready!");
-
     var BoxPlot= SimpleSplunkView.extend({
         className: "splunk-toolkit-scatterplot",
         options: {
