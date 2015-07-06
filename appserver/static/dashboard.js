@@ -10,7 +10,7 @@ require([
     'splunkjs/mvc/simplexml/controller',
     'splunk.util',
     'backbone',
-    'app/custom_vizs/components/srcviewer/srcviewer'
+    'app/d3plus/components/srcviewer/srcviewer'
 ], function($, _, DashboardController, SplunkUtil, Backbone, SourceViewer) {
     // Disable Bootstrap auto discovery
     $('body').off('.data-api');
