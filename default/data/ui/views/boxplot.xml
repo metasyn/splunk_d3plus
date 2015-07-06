@@ -3,41 +3,42 @@
     <row>
       <panel>
         <html>
-          <h2>Boxplot and Scatterplot : <a href="http://archive.ics.uci.edu/ml/datasets/Census+Income">"Adult" Dataset </a> - 1994 Census. Hours worked per week over Race, colored by Age.</h2>
+          <h2>Boxplot and Scatterplot : <a href="http://archive.ics.uci.edu/ml/datasets/Census+Income">"Adult" Dataset </a> - 1994 Census. 
+            Hours worked per week over Race, colored by Age.</h2>
           <p id="info"></p>
-          <div id="scatterplot_search" class="splunk-manager" data-require="splunkjs/mvc/searchmanager" data-options='{
- 	         "search": "|inputlookup census.csv",
-    	     "preview": true
-          }'>
+          <div id="scatterplot_search" 
+          class="splunk-manager" 
+          data-require="splunkjs/mvc/searchmanager" 
+          data-options='{
+			"search": "|inputlookup census.csv",
+			"preview": true
+			}'>
           </div>
           <div id="grouped_treemap" 
           class="splunk-view" 
           data-require="app/d3plus/components/boxplot/boxplot" 
           data-options='{
-		"managerid": "scatterplot_search",
-		"height": "800",
-		"width": "1000", 
-		"levels": ["age"],
-		"x_data": {"value": "race"},
-		"color_field": "age",
-		"y_data": {"value": "hours-per-week"},
-		"aggs": {"hours-per-week": "mean"},
-		"point_size": 8,
-		"tooltip_data": {"children": false},	
-		"ui": 
-		[
-			{
-			"label": "Visualization Type",
-			"method" : "type",
-			"value" : ["scatter", "box"]
-			},
-			{
-			"label": "Color by",
-			"method": "color",
-			"value": ["age"]
-			}
-		]
-}'>
+			"managerid": "scatterplot_search",
+			"height": "800",
+			"width": "1000", 
+			"levels": ["age"],
+			"x_data": {"value": "race"},
+			"color_field": "age",
+			"y_data": {"value": "hours-per-week"},
+			"aggs": {"hours-per-week": "mean"},
+			"point_size": 8,
+			"tooltip_data": {"children": false},	
+			"ui": [{
+				"label": "Visualization Type",
+				"method" : "type",
+				"value" : ["scatter", "box"]
+				},
+				{
+				"label": "Color by",
+				"method": "color",
+				"value": ["age"]
+				}]
+			}'>
           </div>
         </html>
       </panel>
