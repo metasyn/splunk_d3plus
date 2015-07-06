@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        showdown: '../app/D3plus/components/srcviewer/contrib/showdown'
+        showdown: '../app/d3plus/components/srcviewer/contrib/showdown'
     }
 });
 

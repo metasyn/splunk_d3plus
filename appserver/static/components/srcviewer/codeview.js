@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        prettify: '../app/D3plus/components/srcviewer/contrib/prettify'
+        prettify: '../app/d3plus/components/srcviewer/contrib/prettify'
     }
 })
 define([
