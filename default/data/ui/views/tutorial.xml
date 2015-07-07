@@ -8,8 +8,9 @@
       
         <p>First things first: download the Splunk 6.x dashboard examples, the Custom Visualizations app. 
         These two apps are crucial, and more or less considered preqrequisites to understanding
-        or utilizing this app fully. They will lead you with examples through getting custom visualizations 
-        into your dashboards. This app can be thought of as an extension to those, specifically to show how
+        or utilizing this app fully. They aren't literally needed by this app to run, but the knowledge they
+        provide is necessary. There are numerous examples of adding custom visualizations 
+        into your dashboards. This app can be thought of as an extension to those two apps, specifically to show how
         d3plus is easy to integrate and fun to use.
         </p>
       
@@ -32,14 +33,32 @@
     <panel>
       <html>
       
-        <h1 id="the-basic-usage">the basic usage</h1>
-      
-        <p>Go to examples and look at both the dashboard xml and the javascript
-        (bottom of the page). If you like a visualization, you can copy the files
-        into your own <code>appserver/static</code>.</p>
-      
-        <p>After that, you will need two html panels added to your dashboard.</p>
-      
+        <h1 id="the-basic-usage">basic usage</h1>
+        <ul>
+          <li>
+          	<p>
+              <u><strong>ALL</strong></u>
+              of these visualizations require d3 and d3plus. I've concatenated d3plus to the end of d3 so that the file loads faster
+              and there is less to keep track of. 
+            </p>
+          </li>
+          <li>
+            <p>
+              The file is in the <code>appserver/static/components/d3</code>
+              folder of this app - you can see or download it 
+              <a href="../../static/app/d3plus/components/d3/d3.js">here</a> as well.
+            </p>
+          </li>
+      	  <li>
+            <p>Go to examples and look at both the dashboard xml and the javascript
+            (bottom of the page). If you like a visualization, you can copy the files
+              into your own <code>appserver/static</code>. 
+            </p>
+          </li>
+          <li>
+        	<p>After that, you will need two html panels added to your dashboard.</p>
+          </li>
+        </ul>
         <h2 id="1-the-search-splunk-manager-div">1.) The Search - splunk-manager
         div</h2>
       

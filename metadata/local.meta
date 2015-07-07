@@ -4,7 +4,7 @@ modtime = 1432766805.588891000
 
 [views/tutorial]
 version = 6.2.3
-modtime = 1435175583.062267000
+modtime = 1436288785.553384000
 
 [views/viz_bubblechart]
 version = 6.2.2
@@ -88,7 +88,7 @@ modtime = 1434583505.576094000
 
 [views/timeline_treemap]
 version = 6.2.3
-modtime = 1434582443.698920000
+modtime = 1436230046.657053000
 
 [views/boxplot]
 version = 6.2.3
