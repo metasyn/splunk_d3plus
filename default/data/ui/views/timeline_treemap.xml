@@ -9,7 +9,7 @@
           class="splunk-manager" 
           data-require="splunkjs/mvc/searchmanager" 
           data-options='{
-			"search": "index=_internal earliest=-1y
+			"search": "index=_internal earliest=-1q
 			| bucket _time span=1d
 			| eval time = strftime(_time, \"%F\")
 			| stats avg(bytes) as value, avg(spent) as weight, max(bytes) as color by display_page_search_tab clientip file time",
