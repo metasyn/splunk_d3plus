@@ -28,9 +28,6 @@
 			"time_field": "time",
 			"tooltip_data": {"children": false}
 			}'>
-          	<div>
-              <h1> Padding </h1>
-            </div>
           </div>
         </html>
       </panel>
