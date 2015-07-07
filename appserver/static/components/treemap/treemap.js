@@ -1,7 +1,5 @@
 define(function(require, exports, module) {
-    // We have a few dependencies; namely, d3, and d3plus
-    // In order for d3plus to get loaded, we need to load it into
-    // the name var, d3
+
     var d3 = require("../d3/d3");
     var _ = require("underscore");
     var SimpleSplunkView = require("splunkjs/mvc/simplesplunkview");
