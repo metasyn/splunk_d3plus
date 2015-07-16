@@ -14,13 +14,14 @@
 			"preview": true
           }'>
           </div>
-          <div id="grouped_treemap" 
+          <div id="scatterplot" 
           class="splunk-view" 
           data-require="app/d3plus/components/scatterplot/scatterplot" 
           data-options='{
 			"managerid": "scatterplot_search",
 			"height": "800",
 			"width": "1000", 
+			"is_numeric": ["weight", "hp", "mpg", "cyl"],
 			"levels": ["cyl", "name"],
 			"color_field": "weight",
 			"x_data": {"value": "hp"},

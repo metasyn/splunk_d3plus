@@ -12,7 +12,7 @@
 			"search": "index=_internal earliest=-1q
 			| bucket _time span=1d
 			| eval time = strftime(_time, \"%F\")
-			| stats avg(bytes) as value, avg(spent) as weight, max(bytes) as color by display_page_search_tab clientip file time",
+			| stats avg(bytes) as AvgBytes, avg(spent) as AvgSpent, max(bytes) as MaxBytes by display_page_search_tab clientip file time",
 			"preview": true
 			}'>
           </div>
@@ -23,9 +23,15 @@
 			"managerid": "timeline_treemap_search",
 			"height": "800",
 			"width": "1000", 
+			"is_numeric": ["MaxBytes", "AvgSpent", "AvgBytes"],
 			"levels": ["file"],
-			"size_field": "weight",
-			"time_field": "time"
+			"size_field": "MaxBytes",
+			"time_field": "time",
+			"ui" : [{
+				"label": "Color by:",
+				"method": "color",
+				"value" : [{"scale": "d3plus"}, "AvgBytes", "AvgSpent", "MaxBytes"]
+				}]
 			}'>
           </div>
         </html>

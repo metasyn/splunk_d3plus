@@ -23,6 +23,7 @@
 			"managerid": "grouped_treemap_search",
 			"height": "800",
 			"width": "1000", 
+			"is_numeric": ["count"],
 			"levels": ["action", "info"],
 			"size_field": "count",
 			"time_field": "time",
