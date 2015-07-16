@@ -1,6 +1,8 @@
 See the documentation on [github](https://github.com/alexandersimoes/d3plus/wiki/Visualizations) or take a peek at the documentation link on the nav bar above.
 
-A simple mapping of the method from the d3plus docs to the splunk-view div data-options :
+Splunk returns all the values as strings. Use the `is_numeric` option for **any** numeric data other than time, as can be seen in each example.
+
+Otherwise, A simple mapping of the method from the d3plus docs to the splunk-view div data-options :
 
 ```
 Legend: .nameOfMethod() - "name in data options" : (accepted values)
