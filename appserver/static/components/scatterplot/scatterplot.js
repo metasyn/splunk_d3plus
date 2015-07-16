@@ -12,6 +12,7 @@ define(function(require, exports, module) {
             "height": "400",
             "width": "600",
             "time_field" : "",
+            "is_numeric" : [],
             "levels": [],
             "x_data": {
               "value": "x",
@@ -100,26 +101,15 @@ define(function(require, exports, module) {
         // Making the data look how we want it to for updateView to do its job
         // it becomes the second arugment ('data') for updateView
         formatData: function(data) {
+          var numeric_fields= this.settings.get("is_numeric");
 
-          var x_data = this.settings.get("x_data");
-          var y_data = this.settings.get("y_data");
-          var color_field = this.settings.get("color_field");
-          
-          // Convert the string values to numbers
-          // that is, if they can be parsed.
+          // Convert the string value to number
           data = _(data).map(function(f){
-            if (parseFloat(f[x_data.value])){
-              f[x_data.value] = parseFloat(f[x_data.value]);
-            }
-            if (parseFloat(f[y_data.value])){
-              f[y_data.value] = parseFloat(f[y_data.value]);
-            }
-            if (parseFloat(f[color_field])){
-              f[color_field] = parseFloat(f[color_field]);
-            }
+            for (var i=0; i<numeric_fields.length; i++){
+                f[numeric_fields[i]] = parseInt(f[numeric_fields[i]]);
+                }
             return f;
           });
-
           return data;
         },
 

@@ -11,8 +11,9 @@ define(function(require, exports, module) {
             "data": "preview",
             "height": "400",
             "width": "600",
+            "is_numeric": [],
             "levels": [],
-            "color_field": "color",
+            "color_field": {"scale": "d3plus"},
             "size_field": "count",
             "time_field": "",
             "tooltip_data": {"children": true},
@@ -76,7 +77,8 @@ define(function(require, exports, module) {
               .size(size_field)
               .ui(ui)
               .tooltip(tooltip_data)
-              .time(time_field);
+              .time(time_field)
+              .color(color_field);
         
             // add the aggregators if they're defined
             if(aggs){visualization.aggs(aggs)}
@@ -87,17 +89,13 @@ define(function(require, exports, module) {
         // Making the data look how we want it to for updateView to do its job
         // it becomes the second arugment ('data') for updateView
         formatData: function(data) {
-          var size_field = this.settings.get("size_field");
-          var color_field = this.settings.get("color_field");
+          var numeric_fields= this.settings.get("is_numeric");
 
           // Convert the string value to number
           data = _(data).map(function(f){
-            if (parseInt(f[size_field])){
-              f[size_field] = parseInt(f[size_field]);
-            }
-            if (parseInt(f[color_field])){
-              f[color_field] = parseInt(f[color_field]);
-            }
+            for (var i=0; i<numeric_fields.length; i++){
+                f[numeric_fields[i]] = parseInt(f[numeric_fields[i]]);
+                }
             return f;
           });
           return data;
